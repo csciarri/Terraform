@@ -19,3 +19,19 @@ variable vpc_name {
   default     = "cs-vpc"
 }
 
+variable ssh-key-name {
+  description = "Name of SSH Key"
+  type        = string
+  default     = "cs-key"
+}
+
+variable ssh-key {
+  description = "SSH Key"
+  type        = string
+}
+
+variable address_prefix_management {
+  description = "Use the default VPC address prefix or not"
+  type        = string
+  default = "auto"
+}

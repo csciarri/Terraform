@@ -33,5 +33,23 @@ variable ssh-key {
 variable address_prefix_management {
   description = "Use the default VPC address prefix or not"
   type        = string
-  default = "auto"
+  default = "manual"
+}
+
+variable zone1-prefix {
+  description = "Address prefix for zone 1 in the vpc"
+  type        = string
+  default = "10.1.0.0/16"
+}
+
+variable zone2-prefix {
+  description = "Address prefix for zone 2 in the vpc"
+  type        = string
+  default = "10.2.0.0/16"
+}
+
+variable zone3-prefix {
+  description = "Address prefix for zone 3 in the vpc"
+  type        = string
+  default = "10.3.0.0/16"
 }

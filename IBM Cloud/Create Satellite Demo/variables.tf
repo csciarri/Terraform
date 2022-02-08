@@ -94,6 +94,6 @@ variable sat_location_name {
 variable sat_managed_from {
   description = "IBM Cloud Location to manage the Satellite"
   type        = string
-  default = "dal12"
+  default = "dal10"
 }
 

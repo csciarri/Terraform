@@ -10,4 +10,3 @@ data "ibm_satellite_attach_host_script" "script" {
   script_dir        = "/tmp"
   
 }
-

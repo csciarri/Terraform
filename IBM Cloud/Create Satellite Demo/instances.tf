@@ -15,6 +15,9 @@ resource "ibm_is_instance" "instance_master001" {
   zone = "${var.region}-1"
   keys = [ibm_is_ssh_key.isKey.id]
 
+provisioner "local-exec" {
+    command = "echo ${self.primary_network_interface[0].primary_ipv4_address} >> private_ips.txt"
+  }
 }
 
 resource "ibm_is_instance" "instance_master002" {
@@ -29,6 +32,10 @@ resource "ibm_is_instance" "instance_master002" {
   vpc = ibm_is_vpc.vpc1.id
   zone = "${var.region}-2"
   keys = [ibm_is_ssh_key.isKey.id]
+
+  provisioner "local-exec" {
+    command = "echo ${self.primary_network_interface[0].primary_ipv4_address} >> private_ips.txt"
+  }
 
 }
 
@@ -45,6 +52,10 @@ resource "ibm_is_instance" "instance_master003" {
   zone = "${var.region}-3"
   keys = [ibm_is_ssh_key.isKey.id]
 
+  provisioner "local-exec" {
+    command = "echo ${self.primary_network_interface[0].primary_ipv4_address} >> private_ips.txt"
+  }
+
 }
 
 resource "ibm_is_instance" "instance_worker001" {
@@ -59,6 +70,10 @@ resource "ibm_is_instance" "instance_worker001" {
   vpc = ibm_is_vpc.vpc1.id
   zone = "${var.region}-1"
   keys = [ibm_is_ssh_key.isKey.id]
+
+  provisioner "local-exec" {
+    command = "echo ${self.primary_network_interface[0].primary_ipv4_address} >> private_ips.txt"
+  }
 
 }
 
@@ -75,6 +90,10 @@ resource "ibm_is_instance" "instance_worker002" {
   zone = "${var.region}-2"
   keys = [ibm_is_ssh_key.isKey.id]
 
+  provisioner "local-exec" {
+    command = "echo ${self.primary_network_interface[0].primary_ipv4_address} >> private_ips.txt"
+  }
+
 }
 
 resource "ibm_is_instance" "instance_worker003" {
@@ -89,5 +108,9 @@ resource "ibm_is_instance" "instance_worker003" {
   vpc = ibm_is_vpc.vpc1.id
   zone = "${var.region}-3"
   keys = [ibm_is_ssh_key.isKey.id]
+
+  provisioner "local-exec" {
+    command = "echo ${self.primary_network_interface[0].primary_ipv4_address} >> private_ips.txt"
+  }
 
 }

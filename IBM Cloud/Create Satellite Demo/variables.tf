@@ -1,6 +1,7 @@
 variable "ibmcloud_api_key" {
     sensitive   = true
 }
+
 variable "region" {
     description = "Where to create the resources"
     default     = "us-south"
@@ -8,26 +9,38 @@ variable "region" {
 }
 
 variable resource_group {
-  description = "Name of resource group to create VPC"
-  type        = string
-  default     = "default"
+    description = "Name of resource group to create VPC"
+    type        = string
+    default     = "default"
 }
 
 variable vpc_name {
-  description = "Name of VPC"
-  type        = string
-  default     = "cs-vpc"
+    description = "Name of VPC"
+    type        = string
+    default     = "cs-vpc"
 }
 
 variable ssh-key-name {
-  description = "Name of SSH Key"
-  type        = string
-  default     = "cs-key"
+    description = "Name of SSH Key"
+    type        = string
+    default     = "crs-mbp-key"
 }
 
 variable ssh-key {
   description = "SSH Key"
   type        = string
+}
+
+variable vsi-image {
+    description = "Name of the VSI images to use"
+    type        = string
+    default     = "ibm-redhat-7-9-minimal-amd64-4"
+}
+
+variable vsi-profile {
+    description = "Profile of the VSI to use"
+    type        = string
+    default     = "bx2-4x16"
 }
 
 variable address_prefix_management {
@@ -71,3 +84,16 @@ variable zone3-subnet {
   type        = string
   default = "10.3.0.0/24"
 }
+
+variable sat_location_name {
+  description = "IBM Cloud Satellite name"
+  type        = string
+  default = "MoonBase"
+}
+
+variable sat_managed_from {
+  description = "IBM Cloud Location to manage the Satellite"
+  type        = string
+  default = "dal12"
+}
+

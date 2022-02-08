@@ -39,7 +39,7 @@ resource "ibm_is_subnet" "vpc1_subnet1" {
   zone = "${var.region}-1"
   vpc  = ibm_is_vpc.vpc1.id
   ipv4_cidr_block = var.zone1-subnet
-  depends_on      = [
+   depends_on      = [
     ibm_is_vpc_address_prefix.vpc1_address_prefix1
   ]
 }
@@ -49,7 +49,7 @@ resource "ibm_is_subnet" "vpc1_subnet2" {
   zone = "${var.region}-2"
   vpc  = ibm_is_vpc.vpc1.id
   ipv4_cidr_block = var.zone2-subnet
-  depends_on      = [
+   depends_on      = [
     ibm_is_vpc_address_prefix.vpc1_address_prefix2
   ]
 }
@@ -59,7 +59,7 @@ resource "ibm_is_subnet" "vpc1_subnet3" {
   zone = "${var.region}-3"
   vpc  = ibm_is_vpc.vpc1.id
   ipv4_cidr_block = var.zone3-subnet
-  depends_on      = [
+   depends_on      = [
     ibm_is_vpc_address_prefix.vpc1_address_prefix3
   ]
 }

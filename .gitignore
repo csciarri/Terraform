@@ -39,3 +39,4 @@ terraform.rc
 
 #Ignore Terraform lock file
 *.lock.hcl
+private_ips.txt

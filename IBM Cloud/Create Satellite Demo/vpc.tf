@@ -34,10 +34,29 @@ resource "ibm_is_vpc_address_prefix" "vpc1_address_prefix3" {
   cidr = var.zone3-prefix
 }
 
+resource "ibm_is_public_gateway" "zone1_gateway" {
+  name = "zone1-gateway"
+  vpc  = ibm_is_vpc.vpc1.id
+  zone = "${var.region}-1"
+}
+
+resource "ibm_is_public_gateway" "zone2_gateway" {
+  name = "zone2-gateway"
+  vpc  = ibm_is_vpc.vpc1.id
+  zone = "${var.region}-2"
+}
+
+resource "ibm_is_public_gateway" "zone3_gateway" {
+  name = "zone3-gateway"
+  vpc  = ibm_is_vpc.vpc1.id
+  zone = "${var.region}-3"
+}
+
 resource "ibm_is_subnet" "vpc1_subnet1" {
   name = "${var.region}-1-subnet"
   zone = "${var.region}-1"
   vpc  = ibm_is_vpc.vpc1.id
+  public_gateway  = ibm_is_public_gateway.zone1_gateway.id
   ipv4_cidr_block = var.zone1-subnet
    depends_on      = [
     ibm_is_vpc_address_prefix.vpc1_address_prefix1
@@ -48,6 +67,7 @@ resource "ibm_is_subnet" "vpc1_subnet2" {
   name = "${var.region}-2-subnet"
   zone = "${var.region}-2"
   vpc  = ibm_is_vpc.vpc1.id
+  public_gateway  = ibm_is_public_gateway.zone2_gateway.id
   ipv4_cidr_block = var.zone2-subnet
    depends_on      = [
     ibm_is_vpc_address_prefix.vpc1_address_prefix2
@@ -58,6 +78,7 @@ resource "ibm_is_subnet" "vpc1_subnet3" {
   name = "${var.region}-3-subnet"
   zone = "${var.region}-3"
   vpc  = ibm_is_vpc.vpc1.id
+  public_gateway  = ibm_is_public_gateway.zone3_gateway.id
   ipv4_cidr_block = var.zone3-subnet
    depends_on      = [
     ibm_is_vpc_address_prefix.vpc1_address_prefix3

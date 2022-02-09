@@ -18,6 +18,7 @@ resource "ibm_is_instance" "instance_master001" {
 provisioner "local-exec" {
     command = "echo ${self.primary_network_interface[0].primary_ipv4_address} >> private_ips.txt"
   }
+
 }
 
 resource "ibm_is_instance" "instance_master002" {

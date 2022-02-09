@@ -17,7 +17,7 @@ variable resource_group {
 variable vpc_name {
     description = "Name of VPC"
     type        = string
-    default     = "cs-vpc"
+    default     = "satellite-demo-vpc"
 }
 
 variable ssh-key-name {

@@ -1,5 +1,5 @@
 data "ibm_is_image" "vsi_image" {
-  name  = var.vsi-image
+  name = var.vsi-image
 }
 
 resource "ibm_is_instance" "instance_master001" {
@@ -8,14 +8,14 @@ resource "ibm_is_instance" "instance_master001" {
   profile = var.vsi-profile
 
   primary_network_interface {
-    subnet     = ibm_is_subnet.vpc1_subnet1.id
+    subnet = module.myvpc.vpc_zone1_subnet1
   }
 
-  vpc = ibm_is_vpc.vpc1.id
+  vpc  = module.myvpc.vpc_instance_id
   zone = "${var.region}-1"
-  keys = [ibm_is_ssh_key.isKey.id]
+  keys = [module.myvpc.ssh_key_id]
 
-provisioner "local-exec" {
+  provisioner "local-exec" {
     command = "echo ${self.primary_network_interface[0].primary_ipv4_address} >> private_ips.txt"
   }
 
@@ -27,12 +27,12 @@ resource "ibm_is_instance" "instance_master002" {
   profile = var.vsi-profile
 
   primary_network_interface {
-    subnet     = ibm_is_subnet.vpc1_subnet2.id
+    subnet = module.myvpc.vpc_zone2_subnet1
   }
 
-  vpc = ibm_is_vpc.vpc1.id
+  vpc  = module.myvpc.vpc_instance_id
   zone = "${var.region}-2"
-  keys = [ibm_is_ssh_key.isKey.id]
+  keys = [module.myvpc.ssh_key_id]
 
   provisioner "local-exec" {
     command = "echo ${self.primary_network_interface[0].primary_ipv4_address} >> private_ips.txt"
@@ -46,12 +46,12 @@ resource "ibm_is_instance" "instance_master003" {
   profile = var.vsi-profile
 
   primary_network_interface {
-    subnet     = ibm_is_subnet.vpc1_subnet3.id
+    subnet = module.myvpc.vpc_zone3_subnet1
   }
 
-  vpc = ibm_is_vpc.vpc1.id
+  vpc  = module.myvpc.vpc_instance_id
   zone = "${var.region}-3"
-  keys = [ibm_is_ssh_key.isKey.id]
+  keys = [module.myvpc.ssh_key_id]
 
   provisioner "local-exec" {
     command = "echo ${self.primary_network_interface[0].primary_ipv4_address} >> private_ips.txt"
@@ -65,12 +65,12 @@ resource "ibm_is_instance" "instance_worker001" {
   profile = var.vsi-profile
 
   primary_network_interface {
-    subnet     = ibm_is_subnet.vpc1_subnet1.id
+    subnet = module.myvpc.vpc_zone1_subnet1
   }
 
-  vpc = ibm_is_vpc.vpc1.id
+  vpc  = module.myvpc.vpc_instance_id
   zone = "${var.region}-1"
-  keys = [ibm_is_ssh_key.isKey.id]
+  keys = [module.myvpc.ssh_key_id]
 
   provisioner "local-exec" {
     command = "echo ${self.primary_network_interface[0].primary_ipv4_address} >> private_ips.txt"
@@ -84,12 +84,12 @@ resource "ibm_is_instance" "instance_worker002" {
   profile = var.vsi-profile
 
   primary_network_interface {
-    subnet     = ibm_is_subnet.vpc1_subnet2.id
+    subnet = module.myvpc.vpc_zone2_subnet1
   }
 
-  vpc = ibm_is_vpc.vpc1.id
+  vpc  = module.myvpc.vpc_instance_id
   zone = "${var.region}-2"
-  keys = [ibm_is_ssh_key.isKey.id]
+  keys = [module.myvpc.ssh_key_id]
 
   provisioner "local-exec" {
     command = "echo ${self.primary_network_interface[0].primary_ipv4_address} >> private_ips.txt"
@@ -103,12 +103,12 @@ resource "ibm_is_instance" "instance_worker003" {
   profile = var.vsi-profile
 
   primary_network_interface {
-    subnet     = ibm_is_subnet.vpc1_subnet3.id
+    subnet = module.myvpc.vpc_zone3_subnet1
   }
 
-  vpc = ibm_is_vpc.vpc1.id
+  vpc  = module.myvpc.vpc_instance_id
   zone = "${var.region}-3"
-  keys = [ibm_is_ssh_key.isKey.id]
+  keys = [module.myvpc.ssh_key_id]
 
   provisioner "local-exec" {
     command = "echo ${self.primary_network_interface[0].primary_ipv4_address} >> private_ips.txt"

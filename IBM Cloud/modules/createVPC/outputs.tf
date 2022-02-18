@@ -29,3 +29,7 @@ output "vpc_zone2_subnet1" {
 output "vpc_zone3_subnet1" {
   value = ibm_is_subnet.vpc1_subnet3.id
 }
+
+output "resource_group" {
+  value = data.ibm_resource_group.rg.id
+}

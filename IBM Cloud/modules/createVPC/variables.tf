@@ -1,11 +1,13 @@
 variable "resource_group" {
   description = "Name of resource group to create VPC"
   type        = string
+  default     = "default"
 }
 
 variable "vpc_name" {
   description = "Name of VPC"
   type        = string
+  default     = "myvpc"
 }
 
 variable "ssh-key-name" {
@@ -34,11 +36,15 @@ variable "ibmcloud_api_key" {
 }
 
 variable "vpc-prefixes" {
-  type = list(any)
+  type    = list(any)
+  default = ["10.1.0.0/16", "10.2.0.0/16", "10.3.0.0/16"]
+
 }
 
 variable "vpc-subnets" {
-  type = list(any)
+  type    = list(any)
+  default = ["10.1.0.0/24", "10.2.0.0/24", "10.3.0.0/24"]
+
 }
 
 

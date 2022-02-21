@@ -9,4 +9,5 @@ module "myvpc" {
   vpc-subnets               = var.vpc-subnets
   vpc-prefixes              = var.vpc-prefixes
   resource_group            = var.resource_group
+  transit_vpc_name          = var.transit_vpc_name
 }

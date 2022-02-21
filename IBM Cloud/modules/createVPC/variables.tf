@@ -10,6 +10,10 @@ variable "vpc_name" {
   default     = "myvpc"
 }
 
+variable "transit_vpc_name" {
+  description = "Name of an existing transit VPC"
+}
+
 variable "ssh-key-name" {
   description = "Name of SSH Key"
   type        = string

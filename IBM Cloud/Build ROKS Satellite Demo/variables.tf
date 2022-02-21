@@ -20,6 +20,11 @@ variable "vpc_name" {
   default     = "demo-vpc"
 }
 
+variable "transit_vpc_name" {
+  description = "Name of an existing transit VPC"
+  type        = string
+}
+
 variable "vpc-subnets" {
   type    = list(any)
   default = ["10.1.0.0/24", "10.2.0.0/24", "10.3.0.0/24"]

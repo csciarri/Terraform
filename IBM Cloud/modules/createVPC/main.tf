@@ -103,3 +103,28 @@ resource "ibm_is_security_group_rule" "vpc_default_security_group_rule_icmp" {
     type = 8
   }
 }
+
+resource "ibm_tg_gateway" "tg_gw1" {
+  name           = "transit-gateway-transit"
+  location       = var.region
+  global         = false
+  resource_group = data.ibm_resource_group.rg.id
+}
+
+resource "ibm_tg_connection" "tg_connection1" {
+  gateway      = ibm_tg_gateway.tg_gw1.id
+  network_type = "vpc"
+  name         = "myvpc"
+  network_id   = ibm_is_vpc.vpc1.crn
+}
+
+data "ibm_is_vpc" "transit_vpc" {
+  name = var.transit_vpc_name
+}
+
+resource "ibm_tg_connection" "tg_connection2" {
+  gateway      = ibm_tg_gateway.tg_gw1.id
+  network_type = "vpc"
+  name         = "transitvpc"
+  network_id   = data.ibm_is_vpc.transit_vpc.crn
+}
